@@ -56,7 +56,7 @@
 #define INT_1 A5
 
 // Components
-LSM6DSRSensor *AccGyr;
+LSM6DSRSensor AccGyr(&DEV_I2C, LSM6DSR_I2C_ADD_L);
 
 void setup() {
   // Led.
@@ -75,9 +75,9 @@ void setup() {
   // Initialize I2C bus.
   DEV_I2C.begin();
 
-  AccGyr = new LSM6DSRSensor (&DEV_I2C, LSM6DSR_I2C_ADD_L);
-  AccGyr->Enable_X();
-  AccGyr->Enable_G();
+  AccGyr.begin();
+  AccGyr.Enable_X();
+  AccGyr.Enable_G();
 }
 
 void loop() {
@@ -90,8 +90,8 @@ void loop() {
   // Read accelerometer and gyroscope.
   int32_t accelerometer[3];
   int32_t gyroscope[3];
-  AccGyr->Get_X_Axes(accelerometer);
-  AccGyr->Get_G_Axes(gyroscope);
+  AccGyr.Get_X_Axes(accelerometer);
+  AccGyr.Get_G_Axes(gyroscope);
 
   // Output data.
   SerialPort.print("LSM6DSR: | Acc[mg]: ");
