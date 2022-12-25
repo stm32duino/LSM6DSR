@@ -2,8 +2,8 @@
  ******************************************************************************
  * @file    LSM6DSRSensor.h
  * @author  SRA
- * @version V1.0.0
- * @date    March 2020
+ * @version V1.0.1
+ * @date    December 2022
  * @brief   Abstract Class of an LSM6DSR Inertial Measurement Unit (IMU) 6 axes
  *          sensor.
  ******************************************************************************
