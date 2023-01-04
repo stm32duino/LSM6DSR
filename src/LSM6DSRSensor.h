@@ -2,8 +2,8 @@
  ******************************************************************************
  * @file    LSM6DSRSensor.h
  * @author  SRA
- * @version V1.0.0
- * @date    March 2020
+ * @version V1.0.1
+ * @date    December 2022
  * @brief   Abstract Class of an LSM6DSR Inertial Measurement Unit (IMU) 6 axes
  *          sensor.
  ******************************************************************************
@@ -41,7 +41,6 @@
 
 #ifndef __LSM6DSRSensor_H__
 #define __LSM6DSRSensor_H__
-
 
 /* Includes ------------------------------------------------------------------*/
 
@@ -136,7 +135,11 @@ class LSM6DSRSensor
     uint8_t IO_Read(uint8_t* pBuffer, uint8_t RegisterAddr, uint16_t NumByteToRead)
     {        
       if (dev_spi) {
-        dev_spi->beginTransaction(SPISettings(spi_speed, MSBFIRST, SPI_MODE3));
+        #ifdef ESP32
+          dev_spi->beginTransaction(SPISettings(spi_speed, SPI_MSBFIRST, SPI_MODE3));
+        #else
+          dev_spi->beginTransaction(SPISettings(spi_speed, MSBFIRST, SPI_MODE3));
+        #endif        
 
         digitalWrite(cs_pin, LOW);
 
@@ -183,8 +186,11 @@ class LSM6DSRSensor
     uint8_t IO_Write(uint8_t* pBuffer, uint8_t RegisterAddr, uint16_t NumByteToWrite)
     {  
       if (dev_spi) {
-        dev_spi->beginTransaction(SPISettings(spi_speed, MSBFIRST, SPI_MODE3));
-
+        #ifdef ESP32
+          dev_spi->beginTransaction(SPISettings(spi_speed, SPI_MSBFIRST, SPI_MODE3));
+        #else
+          dev_spi->beginTransaction(SPISettings(spi_speed, MSBFIRST, SPI_MODE3));
+        #endif
         digitalWrite(cs_pin, LOW);
 
         /* Write Reg Address */
