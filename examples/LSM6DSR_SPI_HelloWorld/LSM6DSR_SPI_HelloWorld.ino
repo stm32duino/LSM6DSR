@@ -74,7 +74,7 @@ void loop() {
   delay(250);
 
   // Read accelerometer and gyroscope.
-  int32_t accelerometer[3];
+  int32_t accelerometer[3]; // Alternatively, use float accelerometer[3]
   int32_t gyroscope[3];
   AccGyr.Get_X_Axes(accelerometer);
   AccGyr.Get_G_Axes(gyroscope);
