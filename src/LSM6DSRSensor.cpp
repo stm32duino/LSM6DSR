@@ -631,6 +631,37 @@ LSM6DSRStatusTypeDef LSM6DSRSensor::Get_X_Axes(int32_t *Acceleration)
 
 
 /**
+ * @brief  Get the LSM6DSR accelerometer sensor axes as floats
+ * @param  Acceleration pointer where the values of the axes are written
+ * @retval 0 in case of success, an error code otherwise
+ */
+LSM6DSRStatusTypeDef LSM6DSRSensor::Get_X_Axes(float *Acceleration)
+{
+  axis3bit16_t data_raw;
+  float sensitivity = 0.0f;
+
+  /* Read raw data values. */
+  if (lsm6dsr_acceleration_raw_get(&reg_ctx, data_raw.u8bit) != LSM6DSR_OK)
+  {
+    return LSM6DSR_ERROR;
+  }
+
+  /* Get LSM6DSR actual sensitivity. */
+  if (Get_X_Sensitivity(&sensitivity) != LSM6DSR_OK)
+  {
+    return LSM6DSR_ERROR;
+  }
+
+  /* Calculate the data. */
+  Acceleration[0] = ((float)((float)data_raw.i16bit[0] * sensitivity));
+  Acceleration[1] = ((float)((float)data_raw.i16bit[1] * sensitivity));
+  Acceleration[2] = ((float)((float)data_raw.i16bit[2] * sensitivity));
+
+  return LSM6DSR_OK;
+}
+
+
+/**
  * @brief  Get the LSM6DSR ACC data ready bit value
  * @param  Status the status of data ready bit
  * @retval 0 in case of success, an error code otherwise

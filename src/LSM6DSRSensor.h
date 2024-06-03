@@ -108,6 +108,7 @@ class LSM6DSRSensor
     LSM6DSRStatusTypeDef Set_X_FS(int32_t FullScale);
     LSM6DSRStatusTypeDef Get_X_AxesRaw(int16_t *Value);
     LSM6DSRStatusTypeDef Get_X_Axes(int32_t *Acceleration);
+    LSM6DSRStatusTypeDef Get_X_Axes(float *Acceleration);
     LSM6DSRStatusTypeDef Get_X_DRDY_Status(uint8_t *Status);
     
     LSM6DSRStatusTypeDef Enable_G();
