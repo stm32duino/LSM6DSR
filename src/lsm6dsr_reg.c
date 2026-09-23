@@ -1362,7 +1362,7 @@ int32_t lsm6dsr_steps_reset(lsm6dsr_ctx_t *ctx)
 
 /**
   * @defgroup   LSM6DSR_common
-  * @brief      This section groups common usefull functions.
+  * @brief      This section groups common useful functions.
   * @{
   *
   */
@@ -1534,7 +1534,7 @@ int32_t lsm6dsr_ln_pg_write_byte(lsm6dsr_ctx_t *ctx, uint16_t add,
   * @param  ctx    Read / write interface definitions.(ptr)
   * @param  buf    Page line address.(ptr)
   * @param  val    Value to write.
-  * @param  len    buffer lengh.
+  * @param  len    buffer length.
   * @retval        Interface status (MANDATORY: return 0 -> no Error).
   *
   */
@@ -3778,7 +3778,7 @@ int32_t lsm6dsr_i3c_disable_get(lsm6dsr_ctx_t *ctx,
 /**
   * @defgroup   LSM6DSR_interrupt_pins
   * @brief      This section groups all the functions that manage
-  *             interrup pins
+  *             interrupt pins
   * @{
   *
   */
